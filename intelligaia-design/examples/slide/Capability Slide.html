@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capability Slide · Intelligaia</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #stage-wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #slide {
+    width: 1280px; height: 720px; position: relative; overflow: hidden;
+    background: var(--surface-page-dark); color: var(--text-primary-dark);
+    padding: 60px 68px; flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+  <div id="stage-wrap">
+    <div id="slide">
+      <svg style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: .07;" aria-hidden="true">
+        <defs>
+          <pattern id="deck-hex" x="0" y="0" width="60" height="104" patternUnits="userSpaceOnUse">
+            <polygon points="30,2 58,17 58,47 30,62 2,47 2,17" fill="none" stroke="#FFD923" stroke-width="1"/>
+            <polygon points="30,54 58,69 58,99 30,114 2,99 2,69" fill="none" stroke="#FFD923" stroke-width="1"/>
+            <polygon points="60,28 88,43 88,73 60,88 32,73 32,43" fill="none" stroke="#FFD923" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#deck-hex)"/>
+      </svg>
+
+      <div style="position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column;">
+        <img src="../../assets/intelligaia-logo-full-cream.png" alt="Intelligaia" style="height: 40px; width: auto; align-self: flex-start; margin-bottom: 22px;">
+
+        <div style="display: flex; gap: 10px; margin-bottom: 18px;">
+          <span style="display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; padding: 5px 12px; border-radius: var(--radius-pill); background: var(--accent-purple-500); color: var(--prim-ink-000);">Studio Capability</span>
+        </div>
+
+        <h1 style="font-family: var(--font-display); font-weight: 400; font-size: 44px; line-height: 1.08; max-width: 780px; margin: 0 0 18px; color: var(--prim-ink-000);">Data visualisation that survives <em style="color: var(--prim-yellow-500); font-style: italic;">contact with real data.</em></h1>
+
+        <p style="font-size: 17px; max-width: 600px; line-height: 1.45; color: var(--prim-ink-300); margin: 0;">Dashboards and reporting surfaces for enterprise clients — built to hold up once the mock data is replaced with a live, messy production feed.</p>
+
+        <div style="display: flex; gap: 40px; align-items: stretch; margin-top: 28px; margin-bottom: 32px;">
+          <div style="position: relative; flex: 1.1; border-radius: var(--radius-lg); border: 1px dashed var(--accent-purple-400); background: rgba(255,255,255,.04); display: flex; align-items: center; justify-content: center; color: var(--prim-ink-300); font-family: var(--font-mono); font-size: 12px; letter-spacing: var(--ls-wide); text-transform: uppercase; min-height: 190px;">Layered strata chart motif</div>
+
+          <div style="flex: 1; background: var(--prim-ink-950); border: 1px solid var(--prim-graphite); border-radius: var(--radius-lg); padding: 26px 30px; display: flex; align-items: center; gap: 22px;">
+            <div style="font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 52px; line-height: 1; color: var(--prim-yellow-500);">2×</div>
+            <div>
+              <span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--ls-wider); text-transform: uppercase; color: var(--prim-yellow-500);">Outcome</span>
+              <p style="color: var(--prim-ink-300); margin: 6px 0 0; font-size: 13.5px; max-width: 220px;">faster anomaly triage after moving from static exports to a live dashboard.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+          <img src="../../assets/intelligaia-logo-wordmark-cream.png" alt="Intelligaia" style="height: 16px; width: auto; align-self: center; opacity: .9;">
+          <span style="font-family: var(--font-mono); font-size: 13px; color: var(--prim-ink-300);">01</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function fit() {
+      const w = window.innerWidth, h = window.innerHeight;
+      const scale = Math.min(w / 1280, h / 720);
+      document.getElementById('slide').style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fit);
+    fit();
+  </script>
+
+</body>
+</html>

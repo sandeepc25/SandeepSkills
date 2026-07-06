@@ -8,7 +8,7 @@ Skills in this repo are designed to be version-controlled, improved collaborativ
 
 | Skill | Description | Best in |
 |-------|-------------|---------|
-| [intelligaia-design](./intelligaia-design/) | Universal Intelligaia design system for web, slides, and paged documents | Claude |
+| [intelligaia-design](./intelligaia-design/) | Intelligaia design system v2 — web, slides, and paged documents (light covers default, expanded accent palette) | Claude |
 
 ## Using a skill
 
@@ -46,8 +46,9 @@ SandeepSkills/
     ├── SKILL.md                 # Main skill instructions
     ├── intelligaia-design.skill   # Claude import package
     ├── references/              # Brand tokens, voice, adapters per medium
+    ├── styles.css               # Shared token stylesheet (v2 template examples)
     ├── assets/                  # Logos and brand fonts
-    ├── examples/                # Starter templates (web, PDF, deck)
+    ├── examples/                # Starter templates (self-contained + web-page/slide/document)
     ├── samples/                 # Example outputs (web, PDF, deck)
     └── scripts/                 # Build utilities (e.g. font embedding)
 ```

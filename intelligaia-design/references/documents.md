@@ -1,30 +1,20 @@
-# Adapter: Documents (paged)
+# Adapter: Documents (paged) — v2
 
-For proposals, RFP responses, case studies, capability briefs, reports,
-credentials, and one-pagers. **US Letter (8.5 × 11 in), portrait.** Two tiers:
-**PDF** (designed, client-facing — primary) and **DOCX** (editable,
-content-faithful).
+For proposals, RFP responses, case studies, capability briefs, reports, credentials, one-pagers.
+**US Letter (8.5 × 11 in), portrait.** Two tiers: PDF (primary) and DOCX (editable).
 
 ---
 
 ## Tier 1 — PDF (designed)
 
 ### Production method
-Author **HTML + CSS** and render with **WeasyPrint** (`pip install weasyprint
---break-system-packages`). This shares almost the entire stylesheet with the web
-adapter — same tokens, same components — differing only in `@page` rules and a
-paged (not fluid) type scale. Start from `examples/pdf-sample.html`.
-
+Author HTML + CSS, render with **WeasyPrint**:
 ```python
 from weasyprint import HTML
 HTML('proposal.html').write_pdf('proposal.pdf')
 ```
-> ⚠️ Never let a PowerPoint→PDF conversion write to the same filename as a
-> WeasyPrint document PDF — the slide export is landscape and will silently
-> overwrite it. Give each its own name.
 
-### Fonts — embed via @font-face (don't rely on system install)
-Point at the bundled TTFs so the PDF is correct on any machine:
+### Fonts — embed via @font-face
 ```css
 @font-face{font-family:'Trirong';src:url('../assets/fonts/Trirong-Regular.ttf');font-weight:400}
 @font-face{font-family:'Trirong';src:url('../assets/fonts/Trirong-Italic.ttf');font-weight:400;font-style:italic}
@@ -37,77 +27,67 @@ Point at the bundled TTFs so the PDF is correct on any machine:
 @font-face{font-family:'Azeret Mono';src:url('../assets/fonts/AzeretMono-Medium.ttf');font-weight:500}
 ```
 
-### Page setup — US Letter, running chrome
+### v2 — Page setup: light cover by default, thin running chrome
 ```css
 @page{
   size:Letter; margin:18mm 18mm 20mm 18mm;
   @top-left{ content:element(runhead); }
-  @bottom-left{ content:element(runfoot); }                 /* contact + linked site */
+  @bottom-left{ content:element(runfoot); }
   @bottom-right{ content:"Page " counter(page) " / " counter(pages);
     font-family:'Azeret Mono',monospace; font-size:7pt; color:#6B6B62; }
 }
 @page:first{ margin:0; @top-left{content:none} @bottom-left{content:none} @bottom-right{content:none} }
-```
-- **Cover** = a full-bleed element `width:215.9mm; height:279.4mm; margin:0` on a
-  dark surface, `page-break-after:always`; hex `<svg>` at opacity .07; cream full
-  lockup; overline; Trirong headline (one yellow-italic accent); muted lead; a meta
-  line (`Prepared for … · Confidential`) bottom-left.
-- **Type (print pt):** cover h1 40 · page-title/h1 30 · h2 22 · h3 15 · lead 13 ·
-  body 10.5 (lh 1.55) · small 9 · overline 8 · metric 42–48.
 
-### WeasyPrint quirks (these cost time if unknown)
-- Running elements (`position:running(name)`) **ignore `width:100%`** — give the
-  running header an **explicit width** (`179.9mm`, the content width) and use
-  `display:table` + `display:table-cell` to push the title right. Flexbox does not
-  lay out reliably inside running elements.
-- Page numbers must come from `counter(page)`/`counter(pages)` in a **margin box**;
-  they can't live in a running element.
-- To get a **clickable link** in the footer, put the `<a href>` inside a running
-  element (`.runfoot`) shown via `@bottom-left{content:element(runfoot)}` — links in
-  margin-box `content:` strings are not clickable. WeasyPrint emits a real PDF link
-  annotation. The site text is styled gold (`--accent-gold-600`).
-- Inline `<svg>` for the hex motif needs explicit `width:100%;height:100%`.
-
-### Running header / footer markup (placed once at top of `<body>`)
-```html
-<div class="runhead"><span class="wm"><img class="rh-logo" src="../assets/intelligaia-logo-wordmark-ink.png"></span><span class="title">Document Title</span></div>
-<div class="runfoot">sales@intelligaia.com&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://intelligaia.com/">intelligaia.com</a></div>
+/* v2: cover defaults to the LIGHT surface — never all-black by default */
+.cover{
+  position:relative; width:215.9mm; height:279.4mm; margin:0; padding:40mm 28mm; overflow:hidden;
+  page-break-after:always;
+  background:#FAFAF6; color:#1A1916; /* light default */
+}
+.cover .overline{color:#C49A00}
+.cover h1{color:#0D0D0A}
+.cover h1 em{color:#C49A00}
+.cover .lead{color:#6B6B62}
+/* Opt-in dark cover — use ONLY when explicitly requested */
+.cover.dark{background:#0D0D0A;color:#FAFAF6}
+.cover.dark .overline{color:#FFD923}
+.cover.dark h1{color:#FAFAF6}
+.cover.dark h1 em{color:#FFD923}
+.cover.dark .lead{color:#AEAE9F}
 ```
+
+### v2 — Running header/footer: thinner, capped
 ```css
-.runhead{position:running(runhead);display:table;width:179.9mm;table-layout:fixed;font-size:8pt;color:#6B6B62;border-bottom:.5pt solid #E6E5DC;padding-bottom:3pt}
+.runhead{
+  position:running(runhead); display:table; width:179.9mm; table-layout:fixed;
+  font-size:8pt; color:#6B6B62;
+  border-bottom:.5pt solid #E6E5DC;   /* was already thin — cap below is the v2 addition */
+  padding-bottom:3pt; max-height:14mm; /* ~5% of an 11in page */
+}
 .runhead .wm{display:table-cell;text-align:left;vertical-align:bottom} .rh-logo{height:11pt}
 .runhead .title{display:table-cell;text-align:right;vertical-align:bottom}
 .runfoot{position:running(runfoot);font-family:'Azeret Mono',monospace;font-size:7pt;color:#6B6B62}
 .runfoot a{color:#C49A00;text-decoration:none}
 ```
-All other component CSS (prose, pullquote, brand-list, table, metric-band) is the
-web stylesheet with px swapped for pt — see `examples/pdf-sample.html`.
+
+### WeasyPrint quirks (unchanged from v1 — still true)
+- Running elements ignore `width:100%` — give the running header an explicit width and use
+  `display:table`/`table-cell`.
+- Page numbers must come from `counter(page)`/`counter(pages)` in a margin box.
+- A clickable footer link needs `<a href>` inside the running element, not a margin-box string.
+- Inline `<svg>` for a hex motif needs explicit `width:100%;height:100%`.
+
+### Illustration on the cover (v2)
+Default the cover to no motif, or the hex watermark at low opacity (0.06–0.08). For a
+client-specific proposal, swap in a simple SVG illustration built from shapes relevant to that
+client's industry instead (see `components.md` §14b) — same z-index-0, background-only placement.
 
 ### Length / pagination
-Keep related blocks together with `page-break-inside:avoid` on the metric band and
-table; tune body length so a section's signature block (metric/pull quote) doesn't
-strand a near-empty page.
+Keep related blocks together with `page-break-inside:avoid` on the metric band and table.
 
 ---
 
 ## Tier 2 — DOCX (editable, content-faithful)
-When the client needs to edit or track-change, produce a `.docx` via the **docx
-skill** (read `/mnt/skills/public/docx/SKILL.md` first). DOCX is **content-faithful,
-not pixel-faithful**: structure, hierarchy, tables, and brand fonts are preserved;
-the dramatic visuals (full-bleed dark cover, signature curve, hex field, dark
-metric band) are simplified or dropped, or dropped in as a **static PNG** exported
-from the PDF/HTML where they matter.
-
-Mapping to Word styles:
-- Headings → **Trirong** (Title/H1/H2/H3); body → **Raleway** 10.5–11pt; captions /
-  table headers / eyebrows → **Azeret Mono**, uppercase, tracked.
-- Colours from `tokens.md`: ink-900 body, gold-600 eyebrows, yellow-500 only as
-  fills/rules (never body text), warm-cream page where the platform allows.
-- Page size **Letter**, ~18mm margins; running header (wordmark + title) and a
-  single-line footer (`sales@intelligaia.com` · `intelligaia.com` hyperlinked · page
-  number).
-- Tables: mono uppercase header, hairline rows, bold first column, no vertical
-  rules.
-Fonts in DOCX rely on the recipient having them (Word doesn't reliably embed via
-the library path) — note the safe fallbacks (Cambria / Calibri / Consolas) if the
-recipient may lack them, or deliver the matching PDF alongside for fidelity.
+Unchanged from v1: Trirong→Title/H1-H3, Raleway 10.5-11pt body, Azeret Mono captions/eyebrows.
+Cover is simplified or dropped in as a static PNG exported from the PDF/HTML — export the **light**
+cover by default now, not the dark one, unless a dark cover was explicitly built for this doc.

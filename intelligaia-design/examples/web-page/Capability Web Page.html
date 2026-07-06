@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Freight — Capability Brief · Intelligaia</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  a { color: var(--accent-gold-600); }
+  a:hover { color: var(--prim-ink-950); }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+</style>
+</head>
+<body style="font-family: var(--font-body); background: var(--surface-page); min-height: 100vh;">
+
+  <!-- Nav -->
+  <nav style="position: sticky; top: 0; z-index: 50; background: rgba(250,250,246,.85); backdrop-filter: blur(10px); border-bottom: var(--chrome-hairline) solid var(--border-hairline); max-height: var(--chrome-max-height-web);">
+    <div style="display: flex; align-items: center; justify-content: space-between; height: 56px; max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter);">
+      <a href="#" aria-label="Intelligaia home" style="display: flex; align-items: center;">
+        <img src="../../assets/intelligaia-logo-wordmark-ink.png" alt="Intelligaia" style="height: 24px; width: auto; display: block;">
+      </a>
+      <ul style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;">
+        <li><a href="#" style="font-size: .9rem; font-weight: 500; color: var(--prim-ink-900); text-decoration: none;">Work</a></li>
+        <li><a href="#" style="font-size: .9rem; font-weight: 500; color: var(--prim-ink-900); text-decoration: none;">Studio</a></li>
+        <li><a href="#" style="font-size: .9rem; font-weight: 500; color: var(--prim-ink-900); text-decoration: none;">About</a></li>
+      </ul>
+      <a href="#contact" style="display: inline-flex; align-items: center; font-family: var(--font-body); font-weight: 600; font-size: .9rem; padding: .6rem 1.25rem; border-radius: var(--radius-pill); text-decoration: none; background: var(--prim-ink-950); color: var(--prim-ink-000);">Talk to us</a>
+    </div>
+  </nav>
+
+  <!-- Cover — dark, opt-in (case study hero) -->
+  <div style="position: relative; overflow: hidden; background: var(--surface-page-dark); color: var(--text-primary-dark); padding: clamp(2.5rem, 6vw, 4.5rem);">
+    <svg style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: .07; pointer-events: none;" aria-hidden="true">
+      <defs>
+        <pattern id="cover-hex" x="0" y="0" width="60" height="104" patternUnits="userSpaceOnUse">
+          <polygon points="30,2 58,17 58,47 30,62 2,47 2,17" fill="none" stroke="#FFD923" stroke-width="1"/>
+          <polygon points="30,54 58,69 58,99 30,114 2,99 2,69" fill="none" stroke="#FFD923" stroke-width="1"/>
+          <polygon points="60,28 88,43 88,73 60,88 32,73 32,43" fill="none" stroke="#FFD923" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#cover-hex)"/>
+    </svg>
+    <div style="position: relative; z-index: 1; max-width: 46rem;">
+      <p style="font-family: var(--font-mono); font-size: var(--type-overline); font-weight: 500; letter-spacing: var(--ls-widest); text-transform: uppercase; margin: 0; color: var(--text-accent-dark);">Case Study — Logistics</p>
+      <h1 style="font-family: var(--font-display); font-weight: 400; line-height: 1.08; font-size: var(--type-display); margin: var(--sp-6) 0; color: var(--text-primary-dark);">A route network that <em style="font-style: italic; color: var(--prim-yellow-500);">re-plans itself.</em></h1>
+      <p style="font-size: var(--type-lead); max-width: 40rem; margin: 0; color: var(--text-secondary-dark);">Meridian Freight asked us to take a routing-optimisation proof-of-concept from a data-science notebook to a system dispatchers actually rely on every day.</p>
+    </div>
+  </div>
+
+  <main style="max-width: var(--content-max); margin: 0 auto; padding: clamp(3.5rem,8vw,6rem) var(--gutter);">
+
+    <p style="font-family: var(--font-mono); font-size: var(--type-overline); letter-spacing: var(--ls-widest); text-transform: uppercase; color: var(--text-accent); margin: 0 0 var(--sp-3);">The engagement</p>
+    <h2 style="font-family: var(--font-display); font-weight: 400; font-size: var(--type-h2); color: var(--prim-ink-950); margin: 0 0 var(--sp-6);">Three stages, one dispatcher-facing outcome.</h2>
+
+    <!-- Badge showcase -->
+    <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-8);">
+      <span style="display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; padding: .25rem .6rem; border-radius: var(--radius-pill); background: var(--accent-gold-600); color: var(--prim-ink-000);">Workshops</span>
+      <span style="display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; padding: .25rem .6rem; border-radius: var(--radius-pill); background: var(--accent-blue-500); color: var(--prim-ink-000);">Labs</span>
+      <span style="display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; padding: .25rem .6rem; border-radius: var(--radius-pill); background: var(--accent-orange-500); color: var(--prim-ink-950);">Studio</span>
+      <span style="display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; padding: .25rem .6rem; border-radius: var(--radius-pill); background: var(--accent-purple-500); color: var(--prim-ink-000);">Live</span>
+    </div>
+
+    <!-- Card grid -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); margin-bottom: var(--sp-12);">
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--sp-6);">
+        <h4 style="font-family: var(--font-body); font-weight: 600; font-size: var(--type-h4); margin: 0 0 var(--sp-2); color: var(--prim-ink-950);">Discovery</h4>
+        <p style="margin: 0; color: var(--prim-ink-700); line-height: var(--lh-relaxed);">Four weeks mapping dispatcher workflows, fleet constraints, and the existing routing model's failure modes.</p>
+      </div>
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--sp-6);">
+        <h4 style="font-family: var(--font-body); font-weight: 600; font-size: var(--type-h4); margin: 0 0 var(--sp-2); color: var(--prim-ink-950);">Prototype</h4>
+        <p style="margin: 0; color: var(--prim-ink-700); line-height: var(--lh-relaxed);">A re-planning engine validated against six months of historical dispatch data before a single line shipped to production.</p>
+      </div>
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--sp-6);">
+        <h4 style="font-family: var(--font-body); font-weight: 600; font-size: var(--type-h4); margin: 0 0 var(--sp-2); color: var(--prim-ink-950);">Production</h4>
+        <p style="margin: 0; color: var(--prim-ink-700); line-height: var(--lh-relaxed);">Full-stack build: routing service, dispatcher console, and the monitoring layer that tells the team when to trust it.</p>
+      </div>
+    </div>
+
+    <!-- Illustration placeholder -->
+    <div style="position: relative; min-height: 220px; border-radius: var(--radius-lg); border: 1px dashed var(--accent-blue-500); background: var(--surface-recessed); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: .75rem; letter-spacing: var(--ls-wide); text-transform: uppercase;">Route network, re-planned in real time</div>
+
+    <!-- Pull quote -->
+    <blockquote style="font-family: var(--font-display); font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.3; color: var(--prim-ink-950); max-width: 34rem; margin: var(--sp-12) 0; padding: 0; padding-left: var(--sp-6); border-left: 3px solid var(--prim-yellow-500);">
+      The first version we shipped didn't win on accuracy. It won because dispatchers could see why the system re-routed a truck, not just that it had.
+    </blockquote>
+
+    <h3 style="font-family: var(--font-display); font-weight: 400; font-size: var(--type-h3); color: var(--prim-ink-950); margin: 0 0 var(--sp-4);">What shipped</h3>
+    <ul style="list-style: none; max-width: 40rem; margin-top: var(--sp-2); padding: 0;">
+      <li style="position: relative; padding-left: 1.6rem; margin-bottom: .7rem; line-height: 1.5;"><span style="position: absolute; left: 0; top: .55em; width: 9px; height: 9px; background: var(--prim-yellow-500); clip-path: polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%); display: inline-block;"></span>A re-planning engine that recomputes routes against live fleet position, not a nightly batch.</li>
+      <li style="position: relative; padding-left: 1.6rem; margin-bottom: .7rem; line-height: 1.5;"><span style="position: absolute; left: 0; top: .55em; width: 9px; height: 9px; background: var(--prim-yellow-500); clip-path: polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%); display: inline-block;"></span>A dispatcher console that explains every re-route in plain language, not just a confidence score.</li>
+      <li style="position: relative; padding-left: 1.6rem; margin-bottom: .7rem; line-height: 1.5;"><span style="position: absolute; left: 0; top: .55em; width: 9px; height: 9px; background: var(--prim-yellow-500); clip-path: polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%); display: inline-block;"></span>A monitoring layer that pages the team before dispatchers notice something is wrong.</li>
+      <li style="position: relative; padding-left: 1.6rem; margin-bottom: .7rem; line-height: 1.5;"><span style="position: absolute; left: 0; top: .55em; width: 9px; height: 9px; background: var(--prim-yellow-500); clip-path: polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%); display: inline-block;"></span>A rollout plan that moved one depot at a time, so the fallback path was always live.</li>
+    </ul>
+
+    <!-- Metric band -->
+    <div style="background: var(--surface-page-dark); color: var(--text-primary-dark); border-radius: var(--radius-lg); padding: clamp(2rem, 5vw, 3rem); margin-top: var(--sp-12); display: flex; align-items: center; gap: clamp(1.5rem, 4vw, 3rem); flex-wrap: wrap;">
+      <div style="font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: var(--type-metric); line-height: 1; color: var(--prim-yellow-500);">41%</div>
+      <div style="max-width: 22rem;">
+        <span style="font-family: var(--font-mono); font-size: .7rem; letter-spacing: var(--ls-wider); text-transform: uppercase; color: var(--prim-yellow-500);">Outcome</span>
+        <p style="color: var(--text-secondary-dark); margin: .4rem 0 0;">reduction in late deliveries in the first quarter after the re-planning engine reached full fleet coverage.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-weight: 400; font-size: var(--type-h3); color: var(--prim-ink-950); margin: var(--sp-12) 0 var(--sp-5);">Alongside teams like this one</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 0;">
+      <div style="border: 1px solid var(--border-hairline); height: 72px; margin: -0.5px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 600; color: var(--prim-ink-700); font-size: .9rem;">Cisco</div>
+      <div style="border: 1px solid var(--border-hairline); height: 72px; margin: -0.5px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 600; color: var(--prim-ink-700); font-size: .9rem;">Palo Alto Networks</div>
+      <div style="border: 1px solid var(--border-hairline); height: 72px; margin: -0.5px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 600; color: var(--prim-ink-700); font-size: .9rem;">HPE</div>
+      <div style="border: 1px solid var(--border-hairline); height: 72px; margin: -0.5px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 600; color: var(--prim-ink-700); font-size: .9rem;">Zuora</div>
+      <div style="border: 1px solid var(--border-hairline); height: 72px; margin: -0.5px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 600; color: var(--prim-ink-700); font-size: .9rem;">DocuSign</div>
+      <div style="border: 1px solid var(--border-hairline); height: 72px; margin: -0.5px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 600; color: var(--prim-ink-700); font-size: .9rem;">Hitachi Energy</div>
+    </div>
+
+    <!-- Button variants -->
+    <div id="contact" style="display: flex; gap: var(--sp-4); margin-top: var(--sp-12); flex-wrap: wrap;">
+      <a href="#" style="display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-body); font-weight: 600; font-size: 1rem; padding: .85rem 1.6rem; border-radius: var(--radius-pill); text-decoration: none; border: 1px solid transparent; background: var(--prim-yellow-500); color: var(--prim-ink-950); transition: all var(--dur-normal) var(--ease-out);">Start a Workshop</a>
+      <a href="#" style="display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-body); font-weight: 600; font-size: 1rem; padding: .85rem 1.6rem; border-radius: var(--radius-pill); text-decoration: none; border: 1px solid transparent; background: var(--prim-ink-950); color: var(--prim-ink-000); transition: all var(--dur-normal) var(--ease-out);">Read the full brief</a>
+      <a href="#" style="display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-body); font-weight: 600; font-size: 1rem; padding: .85rem 1.6rem; border-radius: var(--radius-pill); text-decoration: none; border: 1px solid var(--prim-ink-300); background: transparent; color: var(--prim-ink-900); transition: all var(--dur-normal) var(--ease-out);">See other case studies</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: var(--surface-page-dark); color: var(--text-secondary-dark); padding: 1.1rem 0;">
+    <div style="max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+      <img src="../../assets/intelligaia-logo-wordmark-cream.png" alt="Intelligaia" style="height: 18px; width: auto; opacity: .95;">
+      <nav style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; font-size: .8rem;">
+        <a href="mailto:sales@intelligaia.com" style="color: var(--text-secondary-dark); text-decoration: none;">sales@intelligaia.com</a>
+        <a href="https://intelligaia.com/" style="color: var(--text-secondary-dark); text-decoration: none;">intelligaia.com</a>
+        <a href="https://www.linkedin.com/company/intelligaia/" style="color: var(--text-secondary-dark); text-decoration: none;">LinkedIn</a>
+        <span style="font-family: var(--font-mono); font-size: .7rem; letter-spacing: .05em; color: var(--prim-ink-500);">© 2026 Intelligaia</span>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

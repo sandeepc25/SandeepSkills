@@ -1,103 +1,86 @@
-# Components — the shared vocabulary
+# Components — the shared vocabulary (v2)
 
-Every Intelligaia artifact is composed from this fixed set of components. Each is
-defined **once** here, then expressed three ways: a web CSS class (see `web.md`), a
-slide helper (see `slides.md`), and a paged pattern (see `documents.md`). Compose
-from these — don't invent ad-hoc blocks. The exact CSS / JS / HTML for each lives
-in the adapters; this file is the index and the rules.
-
-Legend: **W** = web · **S** = slides · **P** = paged (PDF/DOCX).
+Every Intelligaia artifact is composed from this fixed set. Compose from these — don't invent
+ad-hoc blocks. Legend: **W** = web · **S** = slides · **P** = paged (PDF/DOCX).
 
 ---
 
-## 1. Logo lockup
-The official mark. **Full lockup** (wordmark + "humanizing AI experiences") on
-covers, hero, and title slides; **wordmark** in nav, running headers, and footers.
-Ink variant on light surfaces, cream on dark — never the reverse.
-- **W** `<img class="nav-logo-img">` (wordmark-ink, ~24px) / footer `.footer-logo-img` (wordmark-cream, ~18px)
-- **S** `addImage` full-cream on the dark title slide (~2.3in wide); wordmark in footers
-- **P** full-cream on the cover (~14mm tall); wordmark-ink in the running header (~11pt)
+## 1. Logo lockup — unchanged
+Full lockup (wordmark + tagline) on covers/hero/title slides; wordmark in nav/running
+headers/footers. Ink on light, cream on dark — never reversed.
 
-## 2. Overline / eyebrow
-Mono, ALL CAPS, `letter-spacing .16em`. **Gold-600 on light, yellow-500 on dark.**
-Labels a section or the document type. Optional numeric prefix (`01 · POSITIONING`)
-only when sections are ordered.
-- W `.overline.on-light` / `.overline.on-dark` — S mono text, charSpacing 3 — P `.overline`
+## 2. Overline / eyebrow — unchanged
+Mono, ALL CAPS, `letter-spacing .16em`. Gold-600 on light, yellow-500 on dark.
 
-## 3. Cover / hero  *(signature component)*
-Dark surface, hex tessellation at 6–8% behind, full cream lockup, overline,
-Trirong headline with **one** yellow-italic accent phrase, lead in muted text. One
-signature curve OR hex field per cover, never both. z-index 0 for motif — never
-over text.
-- W `.hero` (continuous, dark) — S dark title slide — P `.cover`, full-bleed, `page-break-after`
+## 3. Cover / hero *(signature component — v2 default changed)*
+**Default is `theme: light`** — a cream, printable cover. Hex tessellation watermark or a custom
+geometric illustration behind the headline (motif is optional, see §14b) — never both at once. One
+signature curve OR motif per cover. Switch to `theme: dark` only for a web hero, a title slide, or
+when explicitly requested — **never make a cover page all-black by default.**
+- **W** `.hero` (light by default; `.hero.dark` opt-in) — **S** light content-style title slide by
+  default, dark title slide opt-in for a deck's cover — **P** `.cover` full-bleed, light by default
 
-## 4. Section head
-Overline + Trirong title (`h1`/`h2`) + optional Trirong sub (`lead`/muted).
-- W `.section > .overline + h2` — S eyebrow + 34–40pt title — P `.page-title`/`h2` + `.sub`
+## 4. Section head — unchanged
+Overline + Trirong title + optional Trirong sub.
 
-## 5. Body prose
-`lead-p` (one step above body, opens a section) · `body` · `muted` (secondary, warm
-grey — never cold, never pure black). Measure 60–70 char. On light, body is
-ink-900; on dark, ink-000.
-- W `.prose`, `.lead-p`, `.muted` — S 14–18pt Raleway — P 10.5pt Raleway, 1.55 lh
+## 5. Body prose — unchanged
+`lead-p` · `body` · `muted`. Measure 60-70 char.
 
-## 6. Pull quote  *(signature component)*
-Trirong **italic**, oversized, with a 2.5–3pt yellow left rule. One emphatic line
-per section. On dark, the italic is soft cream (ink-100), never yellow.
-- W `.pullquote` — S large italic Trirong, optional rule — P `.pullquote`
+## 6. Pull quote *(signature component)* — unchanged
+Trirong italic, oversized, 2.5-3pt yellow left rule. One per section.
 
-## 7. Hex bullet list
-List with the hex-clip bullet in yellow. Bullets are decorative-structural, not
-confetti. 1–2 lines each.
-- W `.brand-list li::before` (hex clip-path) — S small filled `hexagon` shapes as bullets — P `ul.brand-list li::before`
+## 7. Hex bullet list — unchanged
+Yellow hex-clip bullet. Structural, not confetti.
 
-## 8. Table
-Mono uppercase header row (`overline` scale, ink-500), heavier rule under the
-header (1.5pt ink-900), hairline row dividers (0.5pt ink-100), **bold first
-column**. Left-aligned. No vertical rules, no zebra fill.
-- W `.tbl` — S `addTable` with per-cell bottom borders — P `table`
+## 8. Table — unchanged
+Mono uppercase header, heavier rule under header, hairline row dividers, bold first column.
 
-## 9. Metric band / callout  *(signature component)*
-Dark rounded panel. Big **Trirong italic yellow** number (`metric` role) + mono
-overline label (`OUTCOME`) + muted one-line description. The single most dominant
-element where it appears. One per section.
-- W `.metric-band` + `.metric` — S dark roundRect + 48pt italic + label — P `.metric-band`
+## 9. Metric band / callout *(signature component)* — unchanged
+Dark rounded panel, Trirong italic yellow number, mono overline label. One per section.
 
-## 10. Buttons / CTAs  *(web + interactive only)*
-Pill radius. `primary` = ink fill / cream text; `accent` = yellow fill / ink text;
-`ghost` = hairline border on dark. On yellow, text is ink only.
-- W `.btn`, `.btn-primary`, `.btn-accent`, `.btn-ghost` — S/P render CTAs as text + contact, not buttons
+## 10. Buttons / CTAs — unchanged
+Pill radius. `primary` ink fill / cream text; `accent` yellow fill / ink text; `ghost` hairline
+border.
 
-## 11. Cards — services & clients
-**Services grid:** 2–3 col cards, optional hex/icon thumb, H4 title + small body.
-**Client grid (GOLDEN RULE):** equal-size hairline-framed boxes for every client;
-never mix logo-only with text-only; never resize individually.
-- W `.card` / `.client-box` grid — S equal cells — P equal hairline boxes
+## 11. Cards — services & clients — unchanged
+Services grid: 2-3 col cards. Client grid (golden rule): equal-size hairline boxes, never mixed
+logo/text, never resized individually.
 
-## 12. Footer  *(single line, locked)*
-One line. **W**: wordmark-cream left; `sales@intelligaia.com` · `intelligaia.com`
-(linked) · LinkedIn · `© {year}` right. **P**: contact + linked site left, `Page n
-/ N` right. **S**: wordmark + slide number. Dynamic year always. Site text is
-always hyperlinked where the medium allows.
+## 12. Footer *(single line, locked, unchanged)*
+Wordmark + contact + linked site + LinkedIn + dynamic year. The one place a full-width dark band
+stays correct — it's a single thin line, not a page-dominating block.
 
-## 13. Running header  *(paged only)*
-Wordmark-ink left, document title right, hairline beneath. Repeats on every page
-except the cover. Thin.
-- P `.runhead` (table-layout, explicit content width)
+## 13. Running header *(paged only — v2: thinner, capped)*
+Wordmark-ink left, doc title right, **hairline rule beneath (0.5pt), height capped at ~14mm
+(~5% of an 11in page).** Repeats on every page except the cover. Never a heavy bar.
 
-## 14. Hex motif & signature curve  *(decorative)*
-Tessellation watermark (opacity per surface, see `tokens.md`) or the single
-signature curve on a cover. Structural only; max two hex scales per surface; never
-bee/hive language.
-- W inline SVG `<pattern>` / curve `<path>` — S faint outline `hexagon` shapes — P inline SVG pattern
+## 14a. Hex motif & signature curve *(decorative, now optional)*
+Tessellation watermark or the signature curve on a cover — **one motif option among several, not
+mandatory.** Structural only; max two hex scales per surface; never bee/hive language.
+
+## 14b. NEW — Client/industry-specific illustration
+Where a document is for a specific client, prefer a **simple geometric illustration built from
+shapes relevant to their industry** over the default hex motif: circuit/node paths for
+hardware/tech, route or network lines for logistics, layered strata/bars for energy or finance,
+simple connected-dot diagrams for data/AI. Use the accent colour families
+(`--accent-orange/blue/purple-*`) plus ink/yellow. Rules: one accent family dominant per
+illustration, flat shapes only (never photographic clipart or a stock icon pack pretending to be
+brand illustration), structural not decorative.
+- **W/P** inline SVG built from simple primitives (circles, lines, bars, paths) — **S** the
+  equivalent as native shapes (no raster clipart)
+
+## NEW — Badge / tag
+Small mono, all-caps pill chip for a category or industry tag on tables/cards. Tones: gold, orange,
+blue, purple, neutral (maps to the accent families above).
+- **W** `.badge.tone-*` — **S/P** small filled rounded-rect + mono label
 
 ---
 
 ## Composition rules
-- A document/deck/page uses each signature component (cover, pull quote, metric)
-  **at most once per section**, deliberately.
-- Order on a typical proposal/brief: cover → section head → prose → pull quote →
-  list/table → metric band → (repeat section head…) → CTA/contact → footer.
-- If a needed block isn't here, map it to the closest component before inventing
-  one; if you must add one, define it here (all three expressions) so the library
-  stays the single source.
+- A document/deck/page uses each signature component (cover, pull quote, metric) **at most once
+  per section**, deliberately.
+- Typical order: cover (light default) → section head → prose → pull quote → list/table → metric
+  band → (repeat…) → CTA/contact → footer.
+- Colour beyond yellow/ink (orange/blue/purple) is available for chart series, tags, and
+  illustration — use it; don't default every visual to yellow-on-black.
+- If a needed block isn't here, map it to the closest component before inventing one.

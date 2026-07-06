@@ -3,10 +3,11 @@ const p = new pptxgen();
 p.defineLayout({ name: "W16x9", width: 13.333, height: 7.5 });
 p.layout = "W16x9";
 
-// ── brand tokens ──
+// ── brand tokens (v2 — includes new accent families) ──
 const YEL = "FFD923", GOLD = "C49A00", INK = "0D0D0A", INK900 = "1A1916",
       INK500 = "6B6B62", INK300 = "AEAE9F", INK100 = "E6E5DC", CREAM = "FAFAF6",
       GRAPHITE = "2A2A24";
+const OR = "FF8A3D", BLU = "2E86DE", PUR = "9350C4"; // new accent anchors
 const SERIF = "Trirong", SANS = "Raleway", MONO = "Azeret Mono";
 
 const footer = (s, n, dark, withLogo=true) => {
@@ -18,29 +19,28 @@ const footer = (s, n, dark, withLogo=true) => {
     color: dark?INK300:INK500, align:"right", valign:"middle" });
 };
 
-// ───────────────────────── SLIDE 1 — dark title ─────────────────────────
+// ───────────────────── SLIDE 1 — title slide (v2: LIGHT by default) ─────────────────────
 let s1 = p.addSlide();
-s1.background = { color: INK };
-// faint hex motif, top-right
-const hexAt = (x,y,sz)=> s1.addShape(p.ShapeType.hexagon, { x, y, w:sz, h:sz*0.9,
-  fill:{ type:"none" }, line:{ color:YEL, width:1, transparency:82 }, rotate:90 });
-[[11.4,0.4,1.4],[12.2,1.25,1.4],[10.6,1.25,1.4],[11.4,2.1,1.4]].forEach(a=>hexAt(...a));
-
-s1.addImage({ path:"../assets/intelligaia-logo-full-cream.png", x:0.65, y:0.55, w:2.3, h:0.85 });
+s1.background = { color: CREAM };
+s1.addImage({ path:"../assets/intelligaia-logo-full-ink.png", x:0.65, y:0.55, w:2.3, h:0.85 });
 s1.addText("CAPABILITY BRIEF", { x:0.7, y:1.7, w:8, h:0.35, fontFace:MONO,
-  fontSize:12, color:YEL, charSpacing:3, align:"left" });
+  fontSize:12, color:GOLD, charSpacing:3, align:"left" });
 s1.addText(
-  [ { text:"From proof-of-concept to ", options:{ color:CREAM } },
-    { text:"production-ready.", options:{ color:YEL, italic:true } } ],
+  [ { text:"From proof-of-concept to ", options:{ color:INK900 } },
+    { text:"production-ready.", options:{ color:GOLD, italic:true } } ],
   { x:0.65, y:2.15, w:11.4, h:2.1, fontFace:SERIF, fontSize:46, lineSpacingMultiple:1.0, align:"left" }
 );
 s1.addText(
   "Intelligaia is an AI-centred design and engineering firm. We take AI proofs-of-concept to production-ready solutions — owning the complete outcome from first Workshop to final deployment.",
-  { x:0.7, y:4.4, w:8.4, h:1.4, fontFace:SANS, fontSize:16, color:INK300, lineSpacingMultiple:1.3, align:"left" }
+  { x:0.7, y:4.4, w:8.4, h:1.4, fontFace:SANS, fontSize:16, color:INK500, lineSpacingMultiple:1.3, align:"left" }
 );
-footer(s1, "01", true, false);
+footer(s1, "01", false, false);
 
-// ──────────────────────── SLIDE 2 — light content ───────────────────────
+// NOTE: for a deliberately dramatic opener (keynote/launch), swap to the dark variant:
+// s1.background = { color: INK }; text colors CREAM/YEL/INK300; faint yellow hex outlines top-right.
+// Do not default to this — only use when explicitly requested.
+
+// ──────────────────────── SLIDE 2 — light content (unchanged pattern) ───────────────────
 let s2 = p.addSlide();
 s2.background = { color: CREAM };
 s2.addText("HOW WE WORK", { x:0.6, y:0.45, w:8, h:0.3, fontFace:MONO, fontSize:11,
@@ -50,7 +50,6 @@ s2.addText("Three stages. One outcome.", { x:0.55, y:0.75, w:12.2, h:0.9,
 s2.addText("Most firms deliver a technical build. We own the outcome — design and engineering working together so what ships actually gets used.",
   { x:0.6, y:1.75, w:6.4, h:0.9, fontFace:SANS, fontSize:14, color:INK900, lineSpacingMultiple:1.3 });
 
-// hex bullets (yellow) + text, left column
 const bullets = [
   "UX/UI design and scalable design systems.",
   "AI POC development — multi-agent, RAG, LLM integration.",
@@ -65,7 +64,6 @@ bullets.forEach((b,i)=>{
     fontSize:13, color:INK900, valign:"middle", lineSpacingMultiple:1.05 });
 });
 
-// table, right column
 const hdr = (t)=>({ text:t, options:{ fontFace:MONO, fontSize:8.5, color:INK500,
   bold:false, charSpacing:1, fill:{ color:CREAM }, valign:"middle",
   border:[{type:"none"},{type:"none"},{pt:1.5,color:INK900},{type:"none"}] } });
@@ -80,7 +78,6 @@ s2.addTable([
 ], { x:7.2, y:1.75, w:5.55, colW:[1.5,2.95,1.1], rowH:[0.4,0.62,0.62,0.62],
      align:"left", valign:"middle" });
 
-// metric band, bottom full width
 s2.addShape(p.ShapeType.roundRect, { x:0.6, y:5.55, w:12.15, h:1.15,
   fill:{ color:INK }, line:{ type:"none" }, rectRadius:0.08 });
 s2.addText("3×", { x:0.85, y:5.55, w:1.7, h:1.15, fontFace:SERIF, italic:true,
@@ -93,4 +90,4 @@ s2.addText(
 );
 footer(s2, "02", false);
 
-p.writeFile({ fileName: "Intelligaia-sample.pptx" }).then(f => console.log("wrote", f));
+p.writeFile({ fileName: "Intelligaia-sample-v2.pptx" }).then(f => console.log("wrote", f));

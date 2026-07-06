@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <style>
-/* bundled brand fonts (portable; resolved relative to this file) */
 @font-face{font-family:'Trirong';src:url('../assets/fonts/Trirong-Regular.ttf');font-weight:400;font-style:normal}
 @font-face{font-family:'Trirong';src:url('../assets/fonts/Trirong-Italic.ttf');font-weight:400;font-style:italic}
 @font-face{font-family:'Trirong';src:url('../assets/fonts/Trirong-SemiBold.ttf');font-weight:600;font-style:normal}
@@ -13,34 +12,28 @@
 @font-face{font-family:'Raleway';src:url('../assets/fonts/Raleway-Italic.ttf');font-weight:400;font-style:italic}
 @font-face{font-family:'Azeret Mono';src:url('../assets/fonts/AzeretMono-Regular.ttf');font-weight:400;font-style:normal}
 @font-face{font-family:'Azeret Mono';src:url('../assets/fonts/AzeretMono-Medium.ttf');font-weight:500;font-style:normal}
-/* Local brand fonts (installed in container; weasyprint resolves via fontconfig) */
 :root{
   --yellow:#FFD923; --gold:#C49A00;
   --ink-950:#0D0D0A; --ink-900:#1A1916; --ink-500:#6B6B62; --ink-300:#AEAE9F;
   --ink-100:#E6E5DC; --ink-050:#F5F4EF; --ink-000:#FAFAF6; --graphite:#2A2A24;
   --serif:'Trirong',Georgia,serif; --sans:'Raleway',Arial,sans-serif; --mono:'Azeret Mono',monospace;
 }
-/* US LETTER, paged */
 @page{
-  size:Letter;            /* 8.5in x 11in */
-  margin:18mm 18mm 20mm 18mm;
+  size:Letter; margin:18mm 18mm 20mm 18mm;
   @top-left{ content:element(runhead); }
   @bottom-left{ content:element(runfoot); }
   @bottom-right{ content:"Page " counter(page) " / " counter(pages); font-family:'Azeret Mono',monospace; font-size:7pt; color:#6B6B62; }
 }
-@page:first{                                /* cover: full-bleed, no header/footer */
+@page:first{
   margin:0;
-  @top-left{ content:none; }
-  @bottom-left{ content:none; }
-  @bottom-center{ content:none; }
-  @bottom-right{ content:none; }
+  @top-left{ content:none; } @bottom-left{ content:none; } @bottom-center{ content:none; } @bottom-right{ content:none; }
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-family:var(--sans);font-size:10.5pt;line-height:1.55;color:var(--ink-900)}
 body{background:var(--ink-000)}
 
-/* running header element */
-.runhead{position:running(runhead);display:table;width:179.9mm;table-layout:fixed;font-size:8pt;color:var(--ink-500);border-bottom:.5pt solid var(--ink-100);padding-bottom:3pt}
+/* v2: running header — thin, capped ~14mm */
+.runhead{position:running(runhead);display:table;width:179.9mm;table-layout:fixed;font-size:8pt;color:var(--ink-500);border-bottom:.5pt solid var(--ink-100);padding-bottom:3pt;max-height:14mm}
 .runhead .wm{display:table-cell;text-align:left;vertical-align:bottom}
 .rh-logo{height:11pt;width:auto}
 .runhead .title{display:table-cell;text-align:right;vertical-align:bottom}
@@ -52,18 +45,24 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--ink-950);line-heig
 em{font-style:italic}
 .overline{font-family:var(--mono);font-size:8pt;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
 
-/* COVER (dark, full-bleed within margins via background box) */
-.cover{position:relative;background:var(--ink-950);color:var(--ink-000);height:279.4mm;width:215.9mm;margin:0;padding:40mm 28mm;overflow:hidden;page-break-after:always}
-.cover .hex{position:absolute;inset:0;width:100%;height:100%;opacity:.07}
+/* v2 — COVER defaults to LIGHT. Add class="dark" only when a dark cover is explicitly requested. */
+.cover{position:relative;background:var(--ink-000);color:var(--ink-900);height:279.4mm;width:215.9mm;margin:0;padding:40mm 28mm;overflow:hidden;page-break-after:always}
+.cover .overline{color:var(--gold)}
 .cover-inner{position:relative;z-index:1}
-.cover .overline{color:var(--yellow)}
-.cover h1{color:var(--ink-000);font-size:40pt;line-height:1.05;margin:14pt 0 16pt;max-width:16cm}
-.cover h1 em{color:var(--yellow)}
-.cover .lead{font-size:13pt;color:var(--ink-300);max-width:13cm}
-.cover .meta{position:absolute;left:28mm;bottom:34mm;font-family:var(--mono);font-size:8.5pt;color:var(--ink-300);z-index:1}
-.cover .meta b{color:var(--ink-000);font-weight:500}
+.cover h1{color:var(--ink-950);font-size:40pt;line-height:1.05;margin:14pt 0 16pt;max-width:16cm}
+.cover h1 em{color:var(--gold)}
+.cover .lead{font-size:13pt;color:var(--ink-500);max-width:13cm}
+.cover .meta{position:absolute;left:28mm;bottom:34mm;font-family:var(--mono);font-size:8.5pt;color:var(--ink-500);z-index:1}
+.cover .meta b{color:var(--ink-900);font-weight:500}
+/* opt-in dark cover */
+.cover.dark{background:var(--ink-950);color:var(--ink-000)}
+.cover.dark .overline{color:var(--yellow)}
+.cover.dark h1{color:var(--ink-000)}
+.cover.dark h1 em{color:var(--yellow)}
+.cover.dark .lead{color:var(--ink-300)}
+.cover.dark .meta{color:var(--ink-300)}
+.cover.dark .meta b{color:var(--ink-000)}
 
-/* CONTENT */
 .page-title{font-size:30pt;margin:0 0 4pt}
 .sub{font-size:13pt;color:var(--ink-500);margin-bottom:18pt;max-width:14cm}
 section{margin-top:11pt}
@@ -79,6 +78,9 @@ ul.brand-list{list-style:none;margin:4pt 0 8pt}
 ul.brand-list li{position:relative;padding-left:14pt;margin-bottom:5pt}
 ul.brand-list li::before{content:"";position:absolute;left:0;top:5pt;width:6pt;height:6pt;background:var(--yellow);clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0% 50%)}
 
+/* v2 — client-specific illustration slot (swap the hex watermark for this where relevant) */
+.illustration-slot{border:1pt dashed #2E86DE;border-radius:8pt;background:#EDECE5;min-height:60pt;display:flex;align-items:center;justify-content:center;color:var(--ink-500);font-family:var(--mono);font-size:8pt;letter-spacing:.05em;text-transform:uppercase;margin:10pt 0}
+
 table{width:100%;border-collapse:collapse;margin-top:4pt;font-size:10pt}
 th{font-family:var(--mono);font-size:7.5pt;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500);text-align:left;padding:5pt 6pt;border-bottom:1.5pt solid var(--ink-900)}
 td{padding:6pt;border-bottom:.5pt solid var(--ink-100);vertical-align:top}
@@ -93,24 +95,13 @@ tr:last-child td{border-bottom:none}
 </head>
 <body>
 
-<!-- running header (repeats on every page after the cover) -->
 <div class="runhead"><span class="wm"><img class="rh-logo" src="../assets/intelligaia-logo-wordmark-ink.png" alt="Intelligaia"/></span><span class="title">Capability Brief — Sample</span></div>
 <div class="runfoot">sales@intelligaia.com&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://intelligaia.com/">intelligaia.com</a></div>
 
-<!-- COVER -->
+<!-- COVER — v2: light by default. Add class="dark" only if explicitly requested. -->
 <div class="cover">
-  <svg class="hex" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <pattern id="hp" x="0" y="0" width="60" height="104" patternUnits="userSpaceOnUse">
-        <polygon points="30,2 58,17 58,47 30,62 2,47 2,17" fill="none" stroke="#FFD923" stroke-width="1"/>
-        <polygon points="30,54 58,69 58,99 30,114 2,99 2,69" fill="none" stroke="#FFD923" stroke-width="1"/>
-        <polygon points="60,28 88,43 88,73 60,88 32,73 32,43" fill="none" stroke="#FFD923" stroke-width="1"/>
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#hp)"/>
-  </svg>
   <div class="cover-inner">
-    <img class="cover-logo" src="../assets/intelligaia-logo-full-cream.png" alt="Intelligaia — humanizing AI experiences"/>
+    <img class="cover-logo" src="../assets/intelligaia-logo-full-ink.png" alt="Intelligaia — humanizing AI experiences"/>
     <p class="overline">Capability Brief</p>
     <h1>From proof-of-concept to <em>production-ready.</em></h1>
     <p class="lead">Intelligaia is an AI-centred design and engineering firm. We take AI proofs-of-concept to production-ready solutions — owning the complete outcome from first Workshop to final deployment.</p>
@@ -118,13 +109,12 @@ tr:last-child td{border-bottom:none}
   <div class="meta">Prepared for <b>Sample Client</b> &nbsp;·&nbsp; <b>Intelligaia</b> &nbsp;·&nbsp; Confidential</div>
 </div>
 
-<!-- BODY PAGE -->
 <h1 class="page-title">Three stages. One outcome.</h1>
 <p class="sub">Most firms deliver a technical build. We own the outcome — design and engineering working together so that what ships actually gets used.</p>
 
 <section>
   <p class="lead-p">This lead paragraph sits one step above body copy in the scale, used to open a section.</p>
-  <p>This paragraph demonstrates body copy in the paged format — Raleway at 10.5pt with 1.55 line-height, on a warm cream page rather than pure white. The running header carries the wordmark and document title; the footer carries the contact line, the linked site, and the page number in Azeret Mono. Yellow is never used for body text on a light page — only the gold eyebrow and yellow fills on the hex bullets, the quote rule, and the dark callout.</p>
+  <p>This paragraph demonstrates body copy in the paged format — Raleway at 10.5pt with 1.55 line-height, on a warm cream page rather than pure white. The running header carries the wordmark and document title, kept thin and capped so it never reads as a heavy band; the footer carries the contact line, the linked site, and the page number in Azeret Mono.</p>
 </section>
 
 <blockquote class="pullquote">A pull quote sits here — set in Trirong italic against a yellow rule, used once per section for a single line worth emphasising.</blockquote>
@@ -137,6 +127,8 @@ tr:last-child td{border-bottom:none}
     <li>Front-end and full-stack engineering at enterprise scale.</li>
     <li>Discovery workshops, AI opportunity mapping, and roadmap definition.</li>
   </ul>
+
+  <div class="illustration-slot">Client-specific illustration slot</div>
 
   <h3>The engagement model</h3>
   <table>
