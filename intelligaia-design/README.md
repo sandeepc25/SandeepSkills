@@ -41,12 +41,16 @@ Finished v2 outputs in `samples/` — regenerate anytime:
 bash scripts/regenerate_samples.sh
 ```
 
-Requires Node.js, `pptxgenjs` (installed on demand), and Google Chrome for PDF export.
+Requires Node.js, `pptxgenjs` (installed on demand), and **WeasyPrint** for PDF export.
+
+**PDF prerequisites** (macOS): `brew install weasyprint` (pulls in Pango/Cairo).
+On first run the script also creates `intelligaia-design/.venv` and installs the Python
+`weasyprint` package if needed.
 
 | File | Source |
 |------|--------|
 | `Intelligaia-web-sample.html` | `examples/web-page/Capability Web Page.html` |
-| `Intelligaia-document-sample.pdf` | `examples/document/Case Study Document.html` |
+| `Intelligaia-document-sample.pdf` | `examples/document/Case Study Document.html` via WeasyPrint (`scripts/render_pdf.py`) |
 | `Intelligaia-deck-sample.pptx` | `examples/build_deck.js` + `scripts/embed_pptx_fonts.py` |
 
 ## Rebuilding the Claude package

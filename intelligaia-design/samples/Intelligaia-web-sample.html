@@ -129,10 +129,11 @@
         <a href="mailto:sales@intelligaia.com" style="color: var(--text-secondary-dark); text-decoration: none;">sales@intelligaia.com</a>
         <a href="https://intelligaia.com/" style="color: var(--text-secondary-dark); text-decoration: none;">intelligaia.com</a>
         <a href="https://www.linkedin.com/company/intelligaia/" style="color: var(--text-secondary-dark); text-decoration: none;">LinkedIn</a>
-        <span style="font-family: var(--font-mono); font-size: .7rem; letter-spacing: .05em; color: var(--prim-ink-500);">© 2026 Intelligaia</span>
+        <span id="copy" style="font-family: var(--font-mono); font-size: .7rem; letter-spacing: .05em; color: var(--prim-ink-500);">© Intelligaia</span>
       </nav>
     </div>
   </footer>
 
+<script>document.getElementById('copy').textContent="© "+new Date().getFullYear()+" Intelligaia";</script>
 </body>
 </html>

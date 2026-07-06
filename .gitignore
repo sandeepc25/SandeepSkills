@@ -2,3 +2,4 @@
 .Staging/
 _staging/
 intelligaia-design/examples/node_modules/
+intelligaia-design/.venv/
