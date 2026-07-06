@@ -56,7 +56,8 @@ On first run the script also creates `intelligaia-design/.venv` and installs the
 ## Rebuilding the Claude package
 
 ```bash
-cd intelligaia-design
-zip -r intelligaia-design.skill . -x "*.DS_Store"
+bash scripts/build_skill.sh
 ```
-Then re-import the updated `.skill` file in Claude.
+
+This deletes any existing `.skill` file first (required — `zip -r` updates leave stale
+paths and Claude will reject archives with more than one `SKILL.md`). Then re-import in Claude.
