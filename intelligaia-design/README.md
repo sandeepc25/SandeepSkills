@@ -35,10 +35,19 @@ Always read the core references first: `tokens.md`, `voice.md`, `proof-points.md
 
 ## Samples
 
-The `samples/` folder contains finished example outputs:
-- `Intelligaia-web-sample.html` — responsive web page (light theme, light cover)
-- `Intelligaia-document-sample.pdf` — US Letter document (build from `examples/pdf-sample.html`)
-- `Intelligaia-deck-sample.pptx` — 16:9 presentation (build from `examples/build_deck.js`)
+Finished v2 outputs in `samples/` — regenerate anytime:
+
+```bash
+bash scripts/regenerate_samples.sh
+```
+
+Requires Node.js, `pptxgenjs` (installed on demand), and Google Chrome for PDF export.
+
+| File | Source |
+|------|--------|
+| `Intelligaia-web-sample.html` | `examples/web-page/Capability Web Page.html` |
+| `Intelligaia-document-sample.pdf` | `examples/document/Case Study Document.html` |
+| `Intelligaia-deck-sample.pptx` | `examples/build_deck.js` + `scripts/embed_pptx_fonts.py` |
 
 ## Rebuilding the Claude package
 
