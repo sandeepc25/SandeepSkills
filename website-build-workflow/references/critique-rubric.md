@@ -5,11 +5,15 @@ pixel-level evidence. Score 1–5; any category below 4 requires a fix. Findings
 actionable sentences ("CTA button contrast fails against the ground color in the footer"),
 never vibes ("footer feels off").
 
-## 1. First impression (5-second test)
-- Does the page communicate what it is within one screen height?
+## 1. First impression & purpose (5-second test)
+- Read the takeaway statement at the top of `design-direction.md` first. Looking ONLY
+  at the first screen height of the screenshot: would a first-time visitor grasp that
+  takeaway and see the intended next action? If not, this category caps at 2/5.
 - Is there one clear focal point, or do elements compete?
 - Would this be mistaken for a default template? (If yes → automatic fix round; identify
   which element is most generic and replace it.)
+- Does the page honor the APPROVED art direction and follow the APPROVED storyboard's
+  section order and slots? Any silent deviation is a finding.
 
 ## 2. Typography
 - Display/text pairing actually rendering (check for fallback-font symptoms: wrong

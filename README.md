@@ -6,10 +6,10 @@ Skills in this repo are designed to be version-controlled, improved collaborativ
 
 ## Skills
 
-| Skill | Description | Best in |
-|-------|-------------|---------|
-| [intelligaia-design](./intelligaia-design/) | Intelligaia design system v2 — web, slides, and paged documents (light covers default, expanded accent palette) | Claude |
-| [website-build-workflow](./website-build-workflow/) | Creative website design + build with a mandatory screenshot → critique → fix loop; custom SVG/AI illustrations, design direction, and anti-generic craft | Hermes, Cursor |
+| Skill | Version | Description | Best in |
+|-------|---------|-------------|---------|
+| [intelligaia-design](./intelligaia-design/) | v2 | Intelligaia design system — web, slides, and paged documents (light covers default, expanded accent palette) | Claude |
+| [website-build-workflow](./website-build-workflow/) | **v2.1** | Creative website design + build with purpose-first takeaway, art-direction and storyboard approval gates, fast mode, and mandatory screenshot → critique → fix loop | Hermes, Cursor |
 
 ## Using a skill
 
@@ -17,7 +17,8 @@ Skills in this repo are designed to be version-controlled, improved collaborativ
 
 1. Clone this repository (or copy the skill folder).
 2. Add `website-build-workflow/` to your Hermes skills path so `SKILL.md` is at the skill root.
-3. The skill triggers on website, landing page, microsite, and creative redesign work — especially when the goal is distinctive, non-template output with visual critique before delivery.
+3. The skill triggers on website, landing page, microsite, and creative redesign work.
+4. **v2.1** runs a gated flow: purpose → research → art direction approval → lo-fi storyboard approval → build → visual critique. Say **"fast mode"** to skip approval waits while keeping craft standards.
 
 ### Claude (recommended for intelligaia-design)
 
@@ -49,6 +50,7 @@ Copy the skill folder so it contains `SKILL.md` at the root. Most assistants tha
 2. Edit the skill (start with `SKILL.md` and `references/`).
 3. Test your changes in your target assistant (Hermes, Claude, or Cursor) before opening a pull request.
 4. For `intelligaia-design`, keep proof points and voice guidelines in sync — `references/proof-points.md` is the single source of truth for metrics and case studies.
+5. For `website-build-workflow`, log approval-gate and fast-mode behavior changes in `SKILL.md` and update `README.md` in that skill folder.
 
 ## Repository layout
 
@@ -64,7 +66,8 @@ SandeepSkills/
 │   ├── examples/                # Starter templates (self-contained + web-page/slide/document)
 │   ├── samples/                 # Example outputs (web, PDF, deck)
 │   └── scripts/                 # Build utilities (e.g. font embedding, PDF render)
-└── website-build-workflow/
-    ├── SKILL.md                 # Brief → design direction → build → critique loop
-    └── references/              # Inspiration sources, illustration guide, critique rubric
+└── website-build-workflow/      # v2.1 — approval gates + critique loop
+    ├── SKILL.md                 # Purpose → direction → storyboard → build → critique
+    ├── README.md                # Version notes and install
+    └── references/              # Inspiration, illustration, storyboard, critique rubric
 ```
